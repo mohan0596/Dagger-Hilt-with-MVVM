@@ -9,9 +9,9 @@ import com.example.sampletest.utils.Constant
 @Entity(tableName = Constant.DEPT_TABLE)
 class DeptTable {
 
-    @ColumnInfo()
+    @ColumnInfo
     @PrimaryKey
-    var dept_id: String? = null
+    var dept_id: String = ""
 
     @ColumnInfo
     var dept_name: String? = null

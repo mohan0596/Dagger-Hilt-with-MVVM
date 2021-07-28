@@ -17,6 +17,7 @@ import retrofit2.Retrofit
 import javax.inject.Singleton
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 @Module
@@ -28,10 +29,10 @@ class ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient() {
+    fun provideOkHttpClient() : OkHttpClient {
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
-        OkHttpClient.Builder()
+       return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .build()
     }
@@ -69,6 +70,11 @@ class ApplicationModule {
     @Provides
     fun provideLocalDatabaseHelper(localRoomDatabase: LocalRoomDatabase): LocalDatabaseHelper {
         return RoomDatabaseManager(localRoomDatabase)
+    }
+
+    @Provides
+    fun provideContext(@ApplicationContext appContext: Context): Context {
+        return appContext
     }
 
 }
