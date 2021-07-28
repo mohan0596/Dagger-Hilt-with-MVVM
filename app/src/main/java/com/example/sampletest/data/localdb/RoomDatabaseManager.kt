@@ -8,6 +8,7 @@ import javax.inject.Inject
 class RoomDatabaseManager @Inject constructor(private val localRoomDatabase: LocalRoomDatabase) :
     LocalDatabaseHelper {
 
+
     override fun saveUserDetail(deptResponse: List<DeptDTO>): Completable {
         return Completable.create { emitter ->
             val userList : ArrayList<DeptTable> = ArrayList()
